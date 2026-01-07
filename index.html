@@ -3,138 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Selamat Ulang Tahun Fakhri 💙</title>
+<title>Selamat Ulang Tahun 💙</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    font-family: 'Nunito Sans', sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: white;
-    background: radial-gradient(circle at top, #0a0f22, #000);
-}
-
-/* CLICK TEXT */
-#clickText {
-    cursor: pointer;
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-    animation: pulse 1.4s infinite;
-}
-
-@keyframes pulse {
-    0%,100% { opacity: 1; transform: scale(1); }
-    50% { opacity: .6; transform: scale(.95); }
-}
-
-/* ENVELOPE */
-.envelope {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    background: #1f4f80;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,.6);
-    perspective: 1000px;
-    overflow: hidden; /* ✅ PENTING: biar kertas ga keluar */
-}
-
-/* FLAP */
-.envelope::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-top: 110px solid #2a71c7;
-    transform-origin: top;
-    transition: transform .8s ease;
-    z-index: 3;
-}
-
-.envelope.open::before {
-    transform: rotateX(180deg);
-}
-
-/* PAPER */
-.paper {
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: -140px;   /* ✅ Mulai benar-benar di dalam amplop */
-    height: 170px;
-    background: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    overflow-y: auto;
-    color: #333;
-    font-size: .95rem;
-    line-height: 1.5;
-    box-shadow: 0 -10px 20px rgba(0,0,0,.15);
-    transition: transform 1.2s cubic-bezier(.22,1,.36,1);
-    z-index: 5; /* ✅ Kertas selalu di depan */
-}
-
-.envelope.open .paper {
-    transform: translateY(-170px); /* ✅ Naik keluar amplop */
-}
-
-/* FLOAT EFFECT */
-.envelope.open .paper {
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%,100% { transform: translateY(-170px); }
-    50% { transform: translateY(-180px); }
-}
-
-/* SHAKE */
-.shake {
-    animation: shake .4s ease;
-}
-
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-4px); }
-    75% { transform: translateX(4px); }
-    100% { transform: translateX(0); }
-}
-
-/* TYPING */
-#typed-text span {
-    opacity: 0;
-    animation: fade .15s forwards;
-}
-
-@keyframes fade { to { opacity: 1; } }
-
-#cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background: #2a71c7;
-    margin-left: 2px;
-    animation: blink .8s steps(1) infinite;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+<div class="bg"></div>
 
 <h2 id="clickText">Coba klik 🎁</h2>
 
@@ -146,53 +22,6 @@ body {
 
 <audio id="bg-music" src="lagu.mp3"></audio>
 
-<script>
-const clickText = document.getElementById('clickText');
-const envelope = document.getElementById('envelope');
-const paper = document.getElementById('paper');
-const typedText = document.getElementById('typed-text');
-const cursor = document.getElementById('cursor');
-const music = document.getElementById('bg-music');
-
-const message = `WAKE UPPP BABYYYY! IT'S YOUR BIRTHDAY! 🎉
-
-to youuu, my boo, my sunshine, my everything.
-hari ini hari kamu dan aku mau kamu tau betapa berharganya kamu buat aku.
-
-I LOVE JUST YOU 🤍
-HAPPY BIRTHDAY SAYANGGG!`;
-
-let i = 0;
-let opened = false;
-
-clickText.addEventListener('click', () => {
-    if (opened) return;
-    opened = true;
-
-    envelope.classList.add('shake');
-
-    setTimeout(() => {
-        envelope.classList.remove('shake');
-        envelope.classList.add('open');
-        music.play().catch(()=>{});
-        setTimeout(typeChar, 800);
-    }, 400);
-
-    clickText.style.display = 'none';
-});
-
-function typeChar() {
-    if (i < message.length) {
-        const span = document.createElement('span');
-        span.textContent = message[i++];
-        typedText.appendChild(span);
-        paper.scrollTop = paper.scrollHeight;
-        setTimeout(typeChar, 35);
-    } else {
-        cursor.style.display = 'none';
-    }
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
