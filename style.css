@@ -94,7 +94,7 @@ body {
     left: 12px;
     right: 12px;
     bottom: 12px;
-    height: 160px;
+    height: 170px;
     background: #fff;
     border-radius: 8px;
     padding: 16px;
@@ -102,22 +102,30 @@ body {
     color: #333;
     font-size: .95rem;
     line-height: 1.5;
-    box-shadow: 0 -10px 25px rgba(0,0,0,.2);
-    transform: translateY(0);
-    transition: transform 1.2s cubic-bezier(.22,1,.36,1);
-    z-index: 2;
+    box-shadow: 0 -10px 20px rgba(0,0,0,.15);
+
+    /* 🔴 POSISI AWAL: MASUK KE DALAM AMPLOP */
+    transform: translateY(120px);
+
+    transition: transform 1.1s cubic-bezier(.22,1,.36,1),
+                height .9s ease;
+
+    z-index: 10;
 }
+
 
 /* PAPER RISE */
 .envelope.open .paper {
-    transform: translateY(-190px);
-    animation: floatPaper 3s ease-in-out infinite;
+    transform: translateY(-140px);
+    height: 320px;
 }
 
-@keyframes floatPaper {
-    0%,100% { transform: translateY(-190px); }
-    50% { transform: translateY(-200px); }
+
+@keyframes paperFloat {
+    0%,100% { transform: translateY(-140px); }
+    50% { transform: translateY(-148px); }
 }
+
 
 /* SHAKE */
 .shake {
